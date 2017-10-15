@@ -1,0 +1,19 @@
+version: '2'
+services:
+
+ mongo:
+   image: mongo
+   volumes:
+    - "/home/ubuntu/DakkanSmartCities/data/db:/data/db"
+   ports:
+    - "27010:27017"
+
+ web:
+   build: .
+   volumes:
+     - ./:/app
+   ports:
+     - "3500:3500"
+     - "80:80"
+   links:
+     - mongo
